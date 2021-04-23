@@ -1,0 +1,24 @@
+{
+  "name": "studbud",
+  "version": "1.0.0",
+  "description": "A useful study tool for students",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmakes/StudBud.git"
+  },
+  "keywords": [
+    "Study",
+    "online",
+    "help"
+  ],
+  "author": "Emma Kesby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emmakes/StudBud/issues"
+  },
+  "homepage": "https://github.com/emmakes/StudBud#readme"
+}
