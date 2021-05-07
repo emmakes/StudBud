@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+li, a {
+  font-family: 'Lora', serif;
+  font-weight: 500;
+  font-size: 24px;
+  background-color: #0F4C81;
+  color: white;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 5%;
+  background-color: #0F4C81;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+body {
+  background-color: #ececec;
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav_links li a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+  color: #B5C7D3;
+}
