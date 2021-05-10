@@ -6,13 +6,14 @@
     <title>StudBud - Medical Science Students Study App</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body>
-      <header>
-        <nav>
+  <body class = "app-container">
+      <div class="grid-container">
+        <div class="header"></div>
+        <div class="nav">
           <input id="nav-toggle" type="checkbox">
           <div class="logo">STUD<strong>BUD</strong></div>
           <ul class = "nav_links">
-            <li><a href = "#Tasks">Tasks</a></li>
+            <li><a href = "#Tasks" class = "active">Tasks</a></li>
             <li><a href = "#Dictionary">Dictionary</a></li>
             <li><a href = "#Timer">Timer</a></li>
             <li><a href = "#Stopwatch">Stopwatch</a></li>
@@ -23,8 +24,75 @@
             <div class="line"></div>
             <div class="line"></div>
           </label>
+        </div>
+      </div>
+
+    <div class="content">
+
+      <section id = "Tasks" class = "page-container">
+        <h1>
+          This is the Tasks page.
+        </h1>
+      </section>
+
+      <section id = "Dictionary" class = "page-container">
+        <h1>
+          This is the Dictionary page.
+        </h1>
+      </section>
+
+      <section id = "Timer" class = "page-container">
+        <nav class = "sub_nav">
+          <ul class = "sub_nav_links">
+            <li class = "sub_nav_item"><a href = "#Pomodoro" class = "active">Pomodoro</a></li>
+            <li class = "sub_nav_item"><a href = "#Short_Break">Short Break</a></li>
+            <li class = "sub_nav_item"><a href = "#Long_Break">Long Break</a></li>
+          </ul>
         </nav>
-      </header>
-    <script src="script.js"></script>
+        <hr class="solid">
+
+        <div id = "Pomodoro" class = "sub-page-container">
+          <h2 class = "time">25:00</h2>
+          <h2 class = "start_and_stop_button">Start</h2>
+          <h2 class = "start_and_stop_button">Stop</h2>
+        </div>
+
+        <div id = "Short_Break" class = "sub-page-container" style = "display: none;">
+          <h2 class = "time">5:00</h2>
+          <h2 class = "start_and_stop_button">Start</h2>
+          <h2 class = "start_and_stop_button">Stop</h2>
+        </div>
+
+        <div id = "Long_Break" class = "sub-page-container" style = "display: none;">
+          <h2 class = "time">15:00</h2>
+          <h2 class = "start_and_stop_button">Start</h2>
+          <h2 class = "start_and_stop_button">Stop</h2>
+        </div>
+
+      </section>
+
+      <section id = "Stopwatch" class = "page-container">
+        <h1>
+          This is the Stopwatch page.
+        </h1>
+      </section>
+
+      <section id = "Listen" class = "page-container">
+        <h1>
+          This is the Listen page.
+        </h1>
+      </section>
+    </div>
+
+      <div class="aside">
+
+      </div>
+
+    <script src="./script.js">
+    </script>
+    <div class="footer">
+
+    </div>
+  </div>
   </body>
 </html>
