@@ -13,7 +13,7 @@ nav.links.forEach(function(link) {
   })
 })
 
-const subLinks = document.querySelectorAll('.sub_nav_links > li > a');
+const subLinks = document.querySelectorAll('.sub_nav > ul > li > a');
 const subPages = document.querySelectorAll('.sub-page-container');
 
 var subNav = new Navigation(subLinks, subPages);

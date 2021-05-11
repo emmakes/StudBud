@@ -455,7 +455,7 @@ nav.links.forEach(function (link) {
     nav.setPage(pageID);
   });
 });
-const subLinks = document.querySelectorAll('.sub_nav_links > li > a');
+const subLinks = document.querySelectorAll('.sub_nav > ul > li > a');
 const subPages = document.querySelectorAll('.sub-page-container');
 var subNav = new _componentsNavigationDefault.default(subLinks, subPages);
 subNav.links.forEach(link => {
