@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudBud - Medical Science Students Study App</title>
+    <link href="1709979ce1a746dbac218773e80dac19" rel="stylesheet" type="text/css">
+  </head>
+  <body class="app-container">
+      <div class="grid-container">
+        <div class="header"></div>
+        <div class="nav">
+          <input id="nav-toggle" type="checkbox">
+          <div class="logo">STUD<strong>BUD</strong></div>
+          <ul class="nav_links">
+            <li><a href="#Tasks" class="active">Tasks</a></li>
+            <li><a href="#Dictionary">Dictionary</a></li>
+            <li><a href="#Timer">Timer</a></li>
+            <li><a href="#Stopwatch">Stopwatch</a></li>
+            <li><a href="#Listen">Listen</a></li>
+          </ul>
+          <label for="nav-toggle" class="icon-burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </label>
+        </div>
+      </div>
+
+
+
+      <section id="Tasks" class="page-container">
+        <h1>
+          This is the Tasks page.
+        </h1>
+      </section>
+
+      <section id="Dictionary" class="page-container">
+        <h1>
+          This is the Dictionary page.
+        </h1>
+      </section>
+
+    <section id="Timer" class="page-container">
+      <div class="aside">
+        <hr class="solid">
+        <nav class="sub_nav">
+          <ul class="sub_nav_links">
+            <li class="sub_nav_item"><a href="#Pomodoro" class="active">Pomodoro</a></li>
+            <li class="sub_nav_item"><a href="#Short_Break">Short Break</a></li>
+            <li class="sub_nav_item"><a href="#Long_Break">Long Break</a></li>
+          </ul>
+        </nav></div>
+        
+      
+      <div class="pomodoro_timer">
+
+        <div id="Pomodoro" class="sub-page-container">
+          <button data-mode="pomodoro" class="button active mode-button" id="js-pomodoro">Pomodoro</button>
+        </div>
+
+        <div id="Short_Break" class="sub-page-container" style="c11dd78f179cab7c970c7f274a317a1b">
+          <button data-mode="shortBreak" class="button mode-button" id="js-short-break">Short Break</button>
+        </div>
+
+        <div id="Long_Break" class="sub-page-container" style="e79979a970ec9c49af6d69e08efa3a14">
+          <h2 class="time">15:00</h2>
+        </div>
+      </div>
+    </section>
+
+      <section id="Stopwatch" class="page-container">
+        <h1>
+          This is the Stopwatch page.
+        </h1>
+      </section>
+
+      <section id="Listen" class="page-container">
+        <h1>
+          This is the Listen page.
+        </h1>
+      </section>
+
+    <script src="a94a5cc328cb89ee3b9929e483436db6" data-parcel-key="3a1e6b7ebca02385b00b4a15d3cc8357">
+    </script>
+    <div class="footer">
+
+    </div>
+  
+  </body>
+</html>

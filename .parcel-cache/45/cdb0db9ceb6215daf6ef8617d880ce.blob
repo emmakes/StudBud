@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudBud - Medical Science Students Study App</title>
+    <link href="1709979ce1a746dbac218773e80dac19" rel="stylesheet" type="text/css">
+  </head>
+  <body class="app-container">
+      <div class="grid-container">
+        <div class="header"></div>
+        <div class="nav">
+          <input id="nav-toggle" type="checkbox">
+          <div class="logo">STUD<strong>BUD</strong></div>
+          <ul class="nav_links">
+            <li><a href="#Tasks" class="active">Tasks</a></li>
+            <li><a href="#Dictionary">Dictionary</a></li>
+            <li><a href="#Timer">Timer</a></li>
+            <li><a href="#Stopwatch">Stopwatch</a></li>
+            <li><a href="#Listen">Listen</a></li>
+          </ul>
+          <label for="nav-toggle" class="icon-burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </label>
+        </div>
+      </div>
+
+
+
+      <section id="Tasks" class="page-container">
+        <h1>
+          This is the Tasks page.
+        </h1>
+      </section>
+
+      <section id="Dictionary" class="page-container">
+        <h1>
+          This is the Dictionary page.
+        </h1>
+      </section>
+
+    <section id="Timer" class="page-container">
+      <div class="aside">
+        <hr class="solid">
+        <nav class="sub_nav">
+          <ul class="sub_nav_links">
+            <li id="work" class="sub_nav_item"><a href="#Pomodoro" class="active">Pomodoro</a></li>
+            <li id="shortBreak" class="sub_nav_item"><a href="#Short_Break">Short Break</a></li>
+            <li id="longBreak" class="sub_nav_item"><a href="#Long_Break">Long Break</a></li>
+          </ul>
+        </nav></div>
+        
+
+
+        <div id="Pomodoro">
+          <div id="container">
+            <div id="timer">
+              <div id="time">
+                <span id="minutes">25</span>
+                <span id="colon">:</span>
+                <span id="seconds">00</span>
+              </div>
+              <div id="filler"></div>
+            </div>
+        </div>
+
+          <button type="button" class="start_and_stop_button">Start</button>          <h2 class="start_and_stop_button">Stop</h2>
+
+    </div></section>
+
+      <section id="Stopwatch" class="page-container">
+        <h1>
+          This is the Stopwatch page.
+        </h1>
+      </section>
+
+      <section id="Listen" class="page-container">
+        <h1>
+          This is the Listen page.
+        </h1>
+      </section>
+
+    <script src="a94a5cc328cb89ee3b9929e483436db6" data-parcel-key="ab1f49586a85293d9fbb38527a6b8ef6">
+    </script>
+    <div class="footer">
+
+    </div>
+  
+  </body>
+</html>

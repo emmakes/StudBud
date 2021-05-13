@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/emmakes/StudBud#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "bootstrap": "^3.4.1",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0"
   },
   "devDependencies": {
     "parcel": "^2.0.0-beta.2"

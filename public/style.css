@@ -50,6 +50,7 @@
 	font-size: 40px;
 	list-style-type: none;
 	align-items: center;
+	font-size: 3vw;
 }
 
 .sub_nav_item a {
@@ -73,10 +74,10 @@
 
 hr.solid {
 	border-left: 4px solid rgba(0, 0, 0, 0.627);
-  height: 400px;
+  height: 100%;
 	position: absolute;
 	top: 10px;
-	left: 520px;
+	left: 100%;
 }
 
 .page-container {
@@ -91,7 +92,7 @@ hr.solid {
 	display: none;
 }
 
-.sub-page-container { 
+#Pomodoro { 
 	grid-area: content;
  	background-color: #ececec;
 	text-align: center;
@@ -99,6 +100,7 @@ hr.solid {
 	width: 100%;
 	max-width: 100%;
 	justify-content: space-around;
+	font-weight: 600;
 }
 
 .footer { 
@@ -159,9 +161,10 @@ hr.solid {
 	font-weight: 600;
 	background-color: #B5C7D3;
 	font-family: 'Lora', serif;
+	text-align: center;
 }
 
-.time {
+#time {
 	font-size:10vw;
 	padding-bottom: 0.2em;
 	color: #363838;
