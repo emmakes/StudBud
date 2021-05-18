@@ -1,0 +1,151 @@
+var _componentsNavigation = require('./components/navigation');
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _componentsNavigationDefault = _parcelHelpers.interopDefault(_componentsNavigation);
+const links = document.querySelectorAll('.nav_links > li > a');
+const pages = document.querySelectorAll('.page-container');
+var nav = new _componentsNavigationDefault.default(links, pages);
+nav.getLinks();
+nav.links.forEach(function (link) {
+  link.addEventListener('click', function () {
+    let pageID = nav.getHash(link);
+    nav.setPage(pageID);
+  });
+});
+const subLinks = document.querySelectorAll('.sub_nav > ul > li > a');
+const subPages = document.querySelectorAll('.sub-page-container');
+var subNav = new _componentsNavigationDefault.default(subLinks, subPages);
+subNav.links.forEach(link => {
+  link.addEventListener('click', function () {
+    let pageID = subNav.getHash(link);
+    subNav.setPage(pageID);
+  });
+});
+// Pomodoro Timer Logic
+var pomodoro = {
+  minutes: 0,
+  seconds: 0,
+  init: function () {
+    var time = this;
+    this.minutesDom = document.querySelector('#minutes');
+    this.secondsDom = document.querySelector('#seconds');
+    this.interval = setInterval(function () {
+      time.intervalCallback.apply(time);
+    }, 1000);
+    document.querySelector('#study').onclick = function () {
+      time.startWork.apply(time);
+    };
+    document.querySelector('#shortBreak').onclick = function () {
+      time.startShortBreak.apply(time);
+    };
+    document.querySelector('#longBreak').onclick = function () {
+      time.startLongBreak.apply(time);
+    };
+    document.querySelector('#stop').onclick = function () {
+      time.stopTimer.apply(time);
+    };
+  },
+  resetVariables: function (mins, secs, started) {
+    this.minutes = mins;
+    this.seconds = secs;
+    this.started = started;
+  },
+  startWork: function () {
+    this.resetVariables(25, 0, true);
+  },
+  startShortBreak: function () {
+    this.resetVariables(5, 0, true);
+  },
+  startLongBreak: function () {
+    this.resetVariables(15, 0, true);
+  },
+  stopTimer: function () {
+    this.resetVariables(25, 0, false);
+    this.updateDom();
+  },
+  toDoubleDigit: function (num) {
+    if (num < 10) {
+      return "0" + parseInt(num, 10);
+    }
+    return num;
+  },
+  updateDom: function () {
+    this.minutesDom.innerHTML = this.toDoubleDigit(this.minutes);
+    this.secondsDom.innerHTML = this.toDoubleDigit(this.seconds);
+  },
+  intervalCallback: function () {
+    if (!this.started) return false;
+    if (this.seconds == 0) {
+      if (this.minutes == 0) {
+        this.timerComplete();
+        return;
+      }
+      this.seconds = 59;
+      this.minutes--;
+    } else {
+      this.seconds--;
+    }
+    this.updateDom();
+  },
+  timerComplete: function () {
+    this.started = false;
+  }
+};
+window.onload = function () {
+  pomodoro.init();
+};
+// Stop Watch Logic
+window.onload = function () {
+  var minutes = 00;
+  var seconds = 00;
+  var tens = 00;
+  var appendTens = document.getElementById("tens");
+  var appendSeconds = document.getElementById("seconds");
+  var appendMinutes = document.getElementById("minutes");
+  var buttonStart = document.getElementById('button-start');
+  var buttonStop = document.getElementById('button-stop');
+  var buttonReset = document.getElementById('button-reset');
+  var Interval;
+  buttonStart.onclick = function () {
+    clearInterval(Interval);
+    Interval = setInterval(startTimer, 10);
+  };
+  buttonStop.onclick = function () {
+    clearInterval(Interval);
+  };
+  buttonReset.onclick = function () {
+    clearInterval(Interval);
+    tens = "00";
+    seconds = "00";
+    minutes = "00";
+    appendTens.innerHTML = tens;
+    appendSeconds.innerHTML = seconds;
+    appendMinutes.innerHTML = minutes;
+  };
+  function startTimer() {
+    tens++;
+    if (tens <= 9) {
+      appendTens.innerHTML = "0" + tens;
+    }
+    if (tens > 9) {
+      appendTens.innerHTML = tens;
+    }
+    if (tens > 99) {
+      console.log("seconds");
+      seconds++;
+      appendSeconds.innerHTML = "1" + seconds;
+      tens = 0;
+      appendTens.innerHTML = "0" + 0;
+    }
+    if (seconds > 9) {
+      appendSeconds.innerHTML = seconds;
+    }
+    if (seconds > 99) {
+      console.log("minutes");
+      minutes++;
+      appendMinutes.innerHTML = "0" + minutes;
+      seconds = 0;
+      appendSeconds.innerHTML = "0" + 0;
+      appendTens.innerHTML = "0" + 0;
+    }
+  }
+};

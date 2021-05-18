@@ -30,9 +30,35 @@
 
 
       <section id="Tasks" class="page-container">
-        <h1>
-          This is the Tasks page.
-        </h1>
+        <!-- <div class = "popup" id = "popup-1">
+          <div class = "overlay"></div>
+          <div class = "content">
+            <div class = "close-btn">&times;</div>
+            <h1>New Task</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+              Eligendi quod, deleniti enim vel corrupti nobis. 
+              Consectetur unde libero nobis magni quos praesentium quaerat 
+              sed nulla consequuntur laudantium. 
+              Commodi, quasi repellat.</p>
+          </div>
+        </div> -->
+        <button data-modal-target="#modal">New Task</button>
+        <div class="modal" id="modal">
+          <div class="modal-header">
+            <div class="title">Complete form below</div>
+            <button data-close-button="" class="close-button">&times;</button>
+          </div>
+          <div class="modal-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Praesentium cupiditate labore nemo repellat totam dicta omnis necessitatibus 
+            facere harum odio, enim exercitationem quia est, veritatis voluptatem excepturi, 
+            nulla quo delectus error doloremque tempore! Dolores facilis ipsam ipsum molestias, 
+            deleniti voluptatum voluptatem! Laudantium, facere iure aut quisquam nobis, 
+            assumenda amet expedita ipsum enim magni deleniti! A perspiciatis quisquam amet 
+            neque architecto?
+          </div>
+        </div>
+        <div id="overlay"></div>
       </section>
 
       <section id="Dictionary" class="page-container">
@@ -63,12 +89,19 @@
               <div id="filler"></div>
             </div>
         </div>
-          <button type="button" id="stop" class="start_and_stop_button">Stop</button>
+          <button type="button" id="stop" class="pomodoro_buttons">Stop</button>
     </div></section>
 
-      <section id="Stopwatch" class="page-container">
-
-      </section>
+    <section id="Stopwatch" class="page-container">
+      <div id="Stopwatch_container">
+          <div id="stopwatchDisplay">
+            00 : 00 : 00 : 000
+        </div>
+          <button class="stopwatch_buttons" id="startTimer">Start</button>
+          <button class="stopwatch_buttons" id="stopTimer">Stop</button>
+          <button class="stopwatch_buttons" id="resetTimer">Reset</button>
+      </div>
+    </section>
 
       <section id="Listen" class="page-container">
         <h1>
@@ -218,12 +251,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"3kHxD":[function(require,module,exports) {
+})({"5W9zN":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
-module.bundle.HMR_BUNDLE_ID = "4686f73b1a1b8b562310f4970556bf2d";
+module.bundle.HMR_BUNDLE_ID = "c90071790c9b27ae9cbd02df36870e43";
 // @flow
 /*global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE*/
 /*::
@@ -519,9 +552,9 @@ id) /*: string*/
   acceptedAssets[id] = true;
 }
 
-},{}],"1R974":[function(require,module,exports) {
+},{}],"7CtL0":[function(require,module,exports) {
 
-},{}]},["3kHxD","1R974"], "1R974", "parcelRequirec526")
+},{}]},["5W9zN","7CtL0"], "7CtL0", "parcelRequirec526")
 
 </script>
     <div class="footer">

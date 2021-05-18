@@ -455,6 +455,8 @@ nav.links.forEach(function (link) {
     nav.setPage(pageID);
   });
 });
+// ^^ Each time the user clicks a page, it will get the correct #
+// and set the page to the correct link
 const subLinks = document.querySelectorAll('.sub_nav > ul > li > a');
 const subPages = document.querySelectorAll('.sub-page-container');
 var subNav = new _componentsNavigationDefault.default(subLinks, subPages);
@@ -464,6 +466,8 @@ subNav.links.forEach(link => {
     subNav.setPage(pageID);
   });
 });
+// ^^ Each time the user clicks a page, it will get the correct #
+// and set the page to the correct link
 // Pomodoro Timer Logic
 var pomodoro = {
   minutes: 0,
@@ -537,6 +541,72 @@ var pomodoro = {
 window.onload = function () {
   pomodoro.init();
 };
+// Stop Watch Logic
+let [milliseconds, seconds, minutes] = [0, 0, 0];
+let timerRef = document.querySelector('#stopwatchDisplay');
+timerRef.innerHTML = '00 : 00 : 000';
+let int = null;
+document.getElementById('startTimer').addEventListener('click', () => {
+  if (int !== null) {
+    clearInterval(int);
+  }
+  int = setInterval(displayTimer, 10);
+});
+document.getElementById('stopTimer').addEventListener('click', () => {
+  clearInterval(int);
+});
+document.getElementById('resetTimer').addEventListener('click', () => {
+  clearInterval(int);
+  [milliseconds, seconds, minutes] = [0, 0, 0];
+  timerRef.innerHTML = '00 : 00 : 000';
+});
+function displayTimer() {
+  milliseconds += 10;
+  if (milliseconds == 1000) {
+    milliseconds = 0;
+    seconds++;
+    if (seconds == 60) {
+      seconds = 0;
+      minutes++;
+    }
+  }
+  let m = minutes < 10 ? "0" + minutes : minutes;
+  let s = seconds < 10 ? "0" + seconds : seconds;
+  let ms = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+  timerRef.innerHTML = `${m} : ${s} : ${ms}`;
+}
+// Task Pop-up Window
+const openModalButtons = document.querySelectorAll('[data-modal-target]');
+const closeModalButtons = document.querySelectorAll('[data-close-button]');
+const overlay = document.getElementById('overlay');
+openModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = document.querySelector(button.dataset.modalTarget);
+    openModal(modal);
+  });
+});
+overlay.addEventListener('click', () => {
+  const modals = document.querySelectorAll('.modal.active');
+  modals.forEach(modal => {
+    closeModal(modal);
+  });
+});
+closeModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal');
+    closeModal(modal);
+  });
+});
+function openModal(modal) {
+  if (modal == null) return;
+  modal.classList.add('active');
+  overlay.classList.add('active');
+}
+function closeModal(modal) {
+  if (modal == null) return;
+  modal.classList.remove('active');
+  overlay.classList.remove('active');
+}
 
 },{"./components/navigation":"2K1cj","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2K1cj":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
