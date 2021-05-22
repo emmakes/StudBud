@@ -469,6 +469,9 @@ subNav.links.forEach(link => {
 // ^^ Each time the user clicks a page, it will get the correct #
 // and set the page to the correct link
 // Pomodoro Timer Logic
+// Reference: https://codepen.io/rajdgreat007/pen/ZpZWbw/
+// Manipulated this code for the timer to succesfully countdown
+// Changed and interated my code to
 var pomodoro = {
   minutes: 0,
   seconds: 0,

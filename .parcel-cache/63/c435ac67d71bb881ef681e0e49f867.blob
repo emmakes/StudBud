@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudBud - Medical Science Students Study App</title>
+    <link href="1709979ce1a746dbac218773e80dac19" rel="stylesheet" type="text/css">
+  </head>
+  <body class="app-container">
+      <div class="grid-container">
+        <div class="header"></div>
+        <div class="nav">
+          <input id="nav-toggle" type="checkbox">
+          <div class="logo">STUD<strong>BUD</strong></div>
+          <ul class="nav_links">
+            <li><a href="#Tasks" class="active">Tasks</a></li>
+            <li><a href="#Dictionary">Dictionary</a></li>
+            <li><a href="#Timer">Timer</a></li>
+            <li><a href="#Stopwatch">Stopwatch</a></li>
+            <li><a href="#Listen">Listen</a></li>
+          </ul>
+          <label for="nav-toggle" class="icon-burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </label>
+        </div>
+      </div>
+
+
+
+      <section id="Tasks" class="page-container">
+        <button data-modal-target="#modal">New Task</button>
+        <div class="modal" id="modal">
+          <div class="modal-header">
+            <div class="title">Add a New Task</div>
+            <button data-close-button="" class="close-button">&times;</button>
+          </div>
+          <div class="modal-tasks">
+            <form>
+              <label>Task Description: <textarea id="task-description" name="description" rows="3"></textarea></label>
+              <label>Due Date: <input type="date" name="duedate" id="duedate"></label>
+              <label id="est-time">Estimated time to complete: <input type="number" name="estimated-time" id="estimated-time"> mins</label>
+              <label>Assign a quadrant for the task: </label>
+              <select name="quadrants" id="quadrants">
+                <option value="1"> 1: Important, urgent</option>
+                <option value="2"> 2: Important, not urgent</option>
+                <option value="3"> 3: Not important, urgent</option>
+                <option value="4"> 4: Not important, not urgent</option>
+              </select>
+            </form>
+          </div>
+        </div>
+        <div id="overlay"></div>
+      </section>
+
+      <section id="Dictionary" class="page-container">
+        <h1>
+          This is the Dictionary page.
+        </h1>
+      </section>
+
+    <section id="Timer" class="page-container">
+      <div class="aside">
+        <hr class="solid">
+        <nav class="sub_nav">
+          <ul class="sub_nav_links">
+            <li id="study" class="sub_nav_item"><a href="#Pomodoro" class="active">Study</a></li>
+            <li id="shortBreak" class="sub_nav_item"><a href="#Short_Break">Short Break</a></li>
+            <li id="longBreak" class="sub_nav_item"><a href="#Long_Break">Long Break</a></li>
+          </ul>
+        </nav></div>
+        
+        <div id="Pomodoro">
+          <div id="container">
+            <div id="timer">
+              <div id="time">
+                <span id="minutes">25</span>
+                <span id="colon">:</span>
+                <span id="seconds">00</span>
+              </div>
+              <div id="filler"></div>
+            </div>
+        </div>
+          <button type="button" id="stop" class="pomodoro_buttons">Stop</button>
+    </div></section>
+
+    <section id="Stopwatch" class="page-container">
+      <div id="Stopwatch_container">
+          <div id="stopwatchDisplay">
+            00 : 00 : 00 : 000
+        </div>
+          <button class="stopwatch_buttons" id="startTimer">Start</button>
+          <button class="stopwatch_buttons" id="stopTimer">Stop</button>
+          <button class="stopwatch_buttons" id="resetTimer">Reset</button>
+      </div>
+    </section>
+
+      <section id="Listen" class="page-container">
+        <h1>
+          This is the Listen page.
+        </h1>
+      </section>
+
+    <script src="a94a5cc328cb89ee3b9929e483436db6" data-parcel-key="859274a8817766e90516a86b26045823">
+    </script>
+    <div class="footer">
+
+    </div>
+  
+  </body>
+</html>
