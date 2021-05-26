@@ -1,0 +1,28 @@
+var _componentsNavigation = require('./components/navigation');
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _componentsNavigationDefault = _parcelHelpers.interopDefault(_componentsNavigation);
+require('./components/tasklist');
+require('./components/pomodoro');
+require('./components/stopwatch');
+require('./components/popupwindow');
+const links = document.querySelectorAll('.nav_links > li > a');
+const pages = document.querySelectorAll('.page-container');
+var nav = new _componentsNavigationDefault.default(links, pages);
+nav.getLinks();
+nav.links.forEach(function (link) {
+  link.addEventListener('click', function () {
+    let pageID = nav.getHash(link);
+    nav.setPage(pageID);
+  });
+});
+// ^^ Each time the user clicks a page, it will get the correct #
+// and set the page to the correct link
+const subLinks = document.querySelectorAll('.sub_nav > ul > li > a');
+const subPages = document.querySelectorAll('.sub-page-container');
+var subNav = new _componentsNavigationDefault.default(subLinks, subPages);
+subNav.links.forEach(link => {
+  link.addEventListener('click', function () {
+    let pageID = subNav.getHash(link);
+    subNav.setPage(pageID);
+  });
+});

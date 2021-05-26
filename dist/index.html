@@ -44,42 +44,27 @@
             <h2>Tasks</h2>
             <div id="task-list" class="column border-right">
               <div class="task-list">
-                <div class="task-header">
-                  <h3 class="list-title">Enter your tasks here!
-                  <p class="task-count">3 tasks remaining!</p>
-                </h3></div>
 
                 <div class="task-body">
+                  <p id="emptyList">You have not added any tasks yet</p>
+                  <br>
 
-                  <!-- Task 1 -->
+                  <!-- Tasks -->
                   <div class="tasks">
-                    <div class="task">
+                    <ul id="tasklist">
+                    <div class="task" id="tasks">
                       <input type="checkbox" id="task-1">
-                      <label for="task-1">Task 1</label>
+                      <label for="task-1"><span class="custom-checkbox"></span>Task 1</label>
                     </div>
+                    </ul>
                   </div>
 
-                  <!-- Task 2 -->
-                  <div class="tasks">
-                    <div class="task">
-                      <input type="checkbox" id="task-2">
-                      <label for="task-2">Task 2</label>
-                    </div>
+                  <div class="task-buttons">
+                    <button data-modal-target="#modal" id="new-task-button">New Task</button>
+                    <button id="btn_delete">Clear completed tasks</button>
                   </div>
-
-                  <!-- Task 3 -->
-                  <div class="tasks">
-                    <div class="task">
-                      <input type="checkbox" id="task-3">
-                      <label for="task-3">Task 3</label>
-                    </div>
-                  </div>
-
-                  <div class="new-task-creator"></div>
-                  <div class="delete-tasks"></div>
                 </div>
               </div>
-              <button data-modal-target="#modal" id="add-task-button">New Task</button>
             </div>
           </div>
         </div>
@@ -92,18 +77,31 @@
             <button data-close-button="" class="close-button">&times;</button>
           </div>
           <div class="modal-tasks">
-            <form>
-              <label>Task Description: <textarea id="task-description" name="description" rows="3" placeholder="Enter description of task here!"></textarea></label>
-              <label>Due Date: <input type="date" name="duedate" id="duedate"></label> <br>
-              <label>Estimated time to complete: <input type="number" name="estimated-time" id="estimated-time"> mins</label> <br>
-              <label>Assign a quadrant for the task: </label>
-              <select name="quadrants" id="quadrants">
+            <form id="taskform">
+              <label for="task">Task Description: </label>
+              <textarea id="taskInput" name="description" rows="3" placeholder="Enter description of task here!"></textarea>
+
+              <label for="dueDate">Due Date: </label> 
+              <input type="date" name="duedate" id="dueDateInput">
+              
+              <br>
+
+              <label for="completionTime">Estimated time to complete: (mins) </label>
+              <input type="number" name="completion-time" id="completionTimeInput">
+              
+              <br>
+
+              <label for="coveyQuadrant">Assign a quadrant for the task: </label>
+              <select name="quadrants" id="quadrantInput">
+                <option value="">Select One</option>
                 <option value="1"> 1: Important, urgent</option>
                 <option value="2"> 2: Important, not urgent</option>
                 <option value="3"> 3: Not important, urgent</option>
                 <option value="4"> 4: Not important, not urgent</option>
               </select>
+
               <br>
+
               <input type="button" value=" Add Task " id="add-task-button">
             </form>
           </div>
@@ -301,12 +299,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"57iPz":[function(require,module,exports) {
+})({"6AjAZ":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
-module.bundle.HMR_BUNDLE_ID = "11b677b768296d5bf406bc282ad42f5d";
+module.bundle.HMR_BUNDLE_ID = "b580feaccb3bf47cdc2d37003673fbaf";
 // @flow
 /*global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE*/
 /*::
@@ -602,9 +600,9 @@ id) /*: string*/
   acceptedAssets[id] = true;
 }
 
-},{}],"50lnA":[function(require,module,exports) {
+},{}],"2bqtx":[function(require,module,exports) {
 
-},{}]},["57iPz","50lnA"], "50lnA", "parcelRequirec526")
+},{}]},["6AjAZ","2bqtx"], "2bqtx", "parcelRequirec526")
 
 </script>
     <div class="footer">

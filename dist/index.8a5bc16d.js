@@ -445,6 +445,10 @@ id) /*: string*/
 var _componentsNavigation = require('./components/navigation');
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 var _componentsNavigationDefault = _parcelHelpers.interopDefault(_componentsNavigation);
+require('./components/tasklist');
+require('./components/pomodoro');
+require('./components/stopwatch');
+require('./components/popupwindow');
 const links = document.querySelectorAll('.nav_links > li > a');
 const pages = document.querySelectorAll('.page-container');
 var nav = new _componentsNavigationDefault.default(links, pages);
@@ -466,152 +470,8 @@ subNav.links.forEach(link => {
     subNav.setPage(pageID);
   });
 });
-// ^^ Each time the user clicks a page, it will get the correct #
-// and set the page to the correct link
-// Pomodoro Timer Logic
-// Reference: https://codepen.io/rajdgreat007/pen/ZpZWbw/
-// Manipulated this code for the timer to succesfully countdown
-// Changed and interated my code to
-var pomodoro = {
-  minutes: 0,
-  seconds: 0,
-  init: function () {
-    var time = this;
-    this.minutesDom = document.querySelector('#minutes');
-    this.secondsDom = document.querySelector('#seconds');
-    this.interval = setInterval(function () {
-      time.intervalCallback.apply(time);
-    }, 1000);
-    document.querySelector('#study').onclick = function () {
-      time.startWork.apply(time);
-    };
-    document.querySelector('#shortBreak').onclick = function () {
-      time.startShortBreak.apply(time);
-    };
-    document.querySelector('#longBreak').onclick = function () {
-      time.startLongBreak.apply(time);
-    };
-    document.querySelector('#stop').onclick = function () {
-      time.stopTimer.apply(time);
-    };
-  },
-  resetVariables: function (mins, secs, started) {
-    this.minutes = mins;
-    this.seconds = secs;
-    this.started = started;
-  },
-  startWork: function () {
-    this.resetVariables(25, 0, true);
-  },
-  startShortBreak: function () {
-    this.resetVariables(5, 0, true);
-  },
-  startLongBreak: function () {
-    this.resetVariables(15, 0, true);
-  },
-  stopTimer: function () {
-    this.resetVariables(25, 0, false);
-    this.updateDom();
-  },
-  toDoubleDigit: function (num) {
-    if (num < 10) {
-      return "0" + parseInt(num, 10);
-    }
-    return num;
-  },
-  updateDom: function () {
-    this.minutesDom.innerHTML = this.toDoubleDigit(this.minutes);
-    this.secondsDom.innerHTML = this.toDoubleDigit(this.seconds);
-  },
-  intervalCallback: function () {
-    if (!this.started) return false;
-    if (this.seconds == 0) {
-      if (this.minutes == 0) {
-        this.timerComplete();
-        return;
-      }
-      this.seconds = 59;
-      this.minutes--;
-    } else {
-      this.seconds--;
-    }
-    this.updateDom();
-  },
-  timerComplete: function () {
-    this.started = false;
-  }
-};
-window.onload = function () {
-  pomodoro.init();
-};
-// Stop Watch Logic
-let [milliseconds, seconds, minutes] = [0, 0, 0];
-let timerRef = document.querySelector('#stopwatchDisplay');
-timerRef.innerHTML = '00 : 00 : 000';
-let int = null;
-document.getElementById('startTimer').addEventListener('click', () => {
-  if (int !== null) {
-    clearInterval(int);
-  }
-  int = setInterval(displayTimer, 10);
-});
-document.getElementById('stopTimer').addEventListener('click', () => {
-  clearInterval(int);
-});
-document.getElementById('resetTimer').addEventListener('click', () => {
-  clearInterval(int);
-  [milliseconds, seconds, minutes] = [0, 0, 0];
-  timerRef.innerHTML = '00 : 00 : 000';
-});
-function displayTimer() {
-  milliseconds += 10;
-  if (milliseconds == 1000) {
-    milliseconds = 0;
-    seconds++;
-    if (seconds == 60) {
-      seconds = 0;
-      minutes++;
-    }
-  }
-  let m = minutes < 10 ? "0" + minutes : minutes;
-  let s = seconds < 10 ? "0" + seconds : seconds;
-  let ms = milliseconds < 10 ? "0" + milliseconds : milliseconds;
-  timerRef.innerHTML = `${m} : ${s} : ${ms}`;
-}
-// Task Pop-up Window
-const openModalButtons = document.querySelectorAll('[data-modal-target]');
-const closeModalButtons = document.querySelectorAll('[data-close-button]');
-const overlay = document.getElementById('overlay');
-openModalButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = document.querySelector(button.dataset.modalTarget);
-    openModal(modal);
-  });
-});
-overlay.addEventListener('click', () => {
-  const modals = document.querySelectorAll('.modal.active');
-  modals.forEach(modal => {
-    closeModal(modal);
-  });
-});
-closeModalButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = button.closest('.modal');
-    closeModal(modal);
-  });
-});
-function openModal(modal) {
-  if (modal == null) return;
-  modal.classList.add('active');
-  overlay.classList.add('active');
-}
-function closeModal(modal) {
-  if (modal == null) return;
-  modal.classList.remove('active');
-  overlay.classList.remove('active');
-}
 
-},{"./components/navigation":"2K1cj","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}],"2K1cj":[function(require,module,exports) {
+},{"./components/navigation":"2K1cj","@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y","./components/tasklist":"Rj9Cl","./components/pomodoro":"2KGxt","./components/stopwatch":"4w2wn","./components/popupwindow":"6b8B0"}],"2K1cj":[function(require,module,exports) {
 var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
 _parcelHelpers.defineInteropFlag(exports);
 class Navigation {
@@ -685,6 +545,248 @@ exports.export = function (dest, destName, get) {
     get: get
   });
 };
+},{}],"Rj9Cl":[function(require,module,exports) {
+const form = document.getElementById("taskform");
+const button = document.getElementById("add-task-button")
+var taskInput = document.getElementById("taskInput");
+var tasklist = document.getElementById("tasklist");
+var dueDateInput = document.getElementById("dueDateInput");
+var completionTimeInput = document.getElementById("completionTimeInput");
+var quadrantInput = document.getElementById("quadrantInput");
+
+button.addEventListener("click", function(event) {
+  event.preventDefault();
+  let taskDescription = taskInput.value;
+  let dueDate = dueDateInput.value;
+  let completionTime = completionTimeInput.value;
+  let coveyQuadrant = quadrantInput.options[quadrantInput.selectedIndex].value;
+
+  addTask(taskDescription, dueDate, completionTime, coveyQuadrant);
+  console.log(taskListArray);
+})
+
+var taskListArray = [];
+function addTask(taskDescription, dueDate, completionTime, coveyQuadrant) {
+  let task = {
+    id: Date.now(),
+    taskDescription,
+    dueDate,
+    completionTime,
+    coveyQuadrant
+  };
+  taskListArray.push(task);
+  console.log(taskListArray);
+  renderTask(task);
+}
+
+function renderTask(task){
+
+  updateEmpty();
+
+  // Create HTML elements
+  let item = document.createElement("li");
+  item.setAttribute('data-id', task.id);
+  item.innerHTML = "<p>" + task.taskDescription + "</p>";
+
+  tasklist.appendChild(item);
+
+  // Extra Task DOM elements
+
+  let delButton = document.createElement("button");
+  let delButtonText = document.createTextNode("Delete Task");
+  delButton.appendChild(delButtonText);
+  item.appendChild(delButton);
+
+  // Event Listeners for DOM elements
+  delButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    let id = event.target.parentElement.getAttribute('data-id');
+    let index = taskListArray.findIndex(task => task.id === Number(id));
+    removeItemFromArray(taskListArray, index)
+    updateEmpty();
+    item.remove();
+  })
+
+  // Clear the input form
+  form.reset();
+}
+
+function removeItemFromArray(arr, index) {
+  if(index > -1) {
+    arr.splice(index, 1)
+  }
+  return arr;
+}
+
+function updateEmpty() {
+  if(taskListArray.length > 0) {
+    document.getElementById("emptyList").style.display = 'none';
+  } else {
+    document.getElementById("emptyList").style.display = 'block';
+  }
+}
+},{}],"2KGxt":[function(require,module,exports) {
+
+// Pomodoro Timer Logic
+// Reference: https://codepen.io/rajdgreat007/pen/ZpZWbw/
+// Manipulated this code for the timer to succesfully countdown
+// Changed and interated my code to 
+
+var pomodoro = {
+  minutes : 0,
+  seconds : 0,
+  init : function(){
+    var time = this;
+    this.minutesDom = document.querySelector('#minutes');
+    this.secondsDom = document.querySelector('#seconds');
+    this.interval = setInterval(function(){
+      time.intervalCallback.apply(time);
+    }, 1000);
+    document.querySelector('#study').onclick = function(){
+      time.startWork.apply(time);
+    };
+    document.querySelector('#shortBreak').onclick = function(){
+      time.startShortBreak.apply(time);
+    };
+    document.querySelector('#longBreak').onclick = function(){
+      time.startLongBreak.apply(time);
+    };
+    document.querySelector('#stop').onclick = function(){
+      time.stopTimer.apply(time);
+    };
+  },
+  resetVariables : function(mins, secs, started){
+    this.minutes = mins;
+    this.seconds = secs;
+    this.started = started;
+  },
+  startWork: function() {
+    this.resetVariables(25, 0, true);
+  },
+  startShortBreak : function(){
+    this.resetVariables(5, 0, true);
+  },
+  startLongBreak : function(){
+    this.resetVariables(15, 0, true);
+  },
+  stopTimer : function(){
+    this.resetVariables(25, 0, false);
+    this.updateDom();
+  },
+  toDoubleDigit : function(num){
+    if(num < 10) {
+      return "0" + parseInt(num, 10);
+    }
+    return num;
+  },
+  updateDom : function(){
+    this.minutesDom.innerHTML = this.toDoubleDigit(this.minutes);
+    this.secondsDom.innerHTML = this.toDoubleDigit(this.seconds);
+  },
+  intervalCallback : function(){
+    if(!this.started) return false;
+    if(this.seconds == 0) {
+      if(this.minutes == 0) {
+        this.timerComplete();
+        return;
+      }
+      this.seconds = 59;
+      this.minutes--;
+    } else {
+      this.seconds--;
+    }
+    this.updateDom();
+  },
+  timerComplete : function(){
+    this.started = false;
+  }
+};
+window.onload = function(){
+pomodoro.init();
+};
+},{}],"4w2wn":[function(require,module,exports) {
+
+// Stop Watch Logic
+
+let [milliseconds,seconds,minutes] = [0,0,0];
+let timerRef = document.querySelector('#stopwatchDisplay');
+timerRef.innerHTML = '00 : 00 : 000';
+let int = null;
+
+document.getElementById('startTimer').addEventListener('click', ()=>{
+    if(int!==null){
+        clearInterval(int);
+    }
+    int = setInterval(displayTimer,10);
+});
+
+document.getElementById('stopTimer').addEventListener('click', ()=>{
+    clearInterval(int);
+});
+
+document.getElementById('resetTimer').addEventListener('click', ()=>{
+    clearInterval(int);
+    [milliseconds,seconds,minutes] = [0,0,0];
+    timerRef.innerHTML = '00 : 00 : 000';
+});
+
+function displayTimer(){
+    milliseconds+=10;
+    if(milliseconds == 1000){
+        milliseconds = 0;
+        seconds++;
+        if(seconds == 60){
+            seconds = 0;
+            minutes++;
+        }
+    }
+    let m = minutes < 10 ? "0" + minutes : minutes;
+    let s = seconds < 10 ? "0" + seconds : seconds;
+    let ms = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+
+    timerRef.innerHTML = `${m} : ${s} : ${ms}`;
+}
+
+},{}],"6b8B0":[function(require,module,exports) {
+
+//Task Pop-up Window
+
+const openModalButtons = document.querySelectorAll('[data-modal-target]')
+const closeModalButtons = document.querySelectorAll('[data-close-button]')
+const overlay = document.getElementById('overlay')
+
+openModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = document.querySelector(button.dataset.modalTarget)
+    openModal(modal)
+  })
+})
+
+overlay.addEventListener('click', ()=> {
+  const modals = document.querySelectorAll('.modal.active')
+  modals.forEach(modal => {
+    closeModal(modal)
+  })
+})
+
+closeModalButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal')
+    closeModal(modal)
+  })
+})
+
+function openModal(modal) {
+  if(modal == null) return
+  modal.classList.add('active')
+  overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+  if(modal == null) return
+  modal.classList.remove('active')
+  overlay.classList.remove('active')
+}
 },{}]},["27Rzb","4OAbU"], "4OAbU", "parcelRequirec526")
 
 //# sourceMappingURL=index.8a5bc16d.js.map
