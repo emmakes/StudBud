@@ -90,10 +90,18 @@
 }
 
 [type = "checkbox"] {
-	opacity: 0;
-	position: absolute;
+	opacity: 100;
+	position: relative;
+	margin-right: 20px;
 }
 
+/* [type = "checkbox"]:checked {
+	background-color: #F5B895;
+	border-color: #F5B895;
+	box-shadow: inset 0 0 0 1.5px #DDDDDD;
+} */
+
+/* 
 .custom-checkbox {
 	display: inline-block;
 	width: 0.75em;
@@ -112,12 +120,6 @@
 	color: #F5B895;
 }
 
-[type = "checkbox"]:checked + label .custom-checkbox {
-	background-color: #F5B895;
-	border-color: #F5B895;
-	box-shadow: inset 0 0 0 1.5px #DDDDDD;
-}
-
 [type = "checkbox"]:checked + label {
 	opacity: 0.5;
 }
@@ -125,14 +127,19 @@
 [type = "checkbox"]:checked + label::after {
 	transform: scaleX(1);
 	transform-origin: left;
-}
+} */ 
 
 .task-buttons {
 	display: flex;
 	justify-content: space-evenly;
-	position: absolute;
+	position: relative;
 	width: 100%;
 	left: 0;
+}
+
+.task-buttons:hover {
+	opacity: 70%;
+	transition: all 0.1s ease-in 0s;
 }
 
 .task label {
@@ -141,11 +148,32 @@
 	position: relative;
 }
 
+button.delete {
+	font-size: 12px;
+	padding: 5px 10px;
+	color: #363838;
+	font-weight: 500;
+	background-color: #F5B895;
+	font-family: 'Lora', serif;
+	text-align: center;
+	border-radius: 0.3em;
+	border-color: #b5c7d350;
+	border-width: 3px;
+	cursor: pointer;
+	position: relative;
+	float: right;
+}
+
+button:hover {
+	opacity: 70%;
+	transition: all 0.1s ease-in 0s;
+}
+
 .task {
 	position: relative;
 	margin-bottom: 1.25em;
 }
-
+/* 
 .task::after {
 	content: "";
 	position: absolute;
@@ -167,7 +195,7 @@
 	transform-origin: right;
 	transform: scaleX(0);
 	transition: transform 200ms ease-in-out;
-}
+} */
 
 h2 {
 	color: #F5B895;
@@ -293,7 +321,7 @@ hr.solid {
   margin: 0;
 }
 
-.container {
+.p-container {
   position: relative;
   margin-top: 100px;
 }
@@ -515,6 +543,20 @@ hr.solid {
 	color: #363838;
 }
 
+li::marker {
+	color: #F5B895;
+	font-size: 24px;
+}
+
+li {
+	padding: 10px 10px;
+	margin-left: 10px;
+}
+
+ul {
+	list-style-type:none;
+}
+
 #add-task-button {
 	font-size: 16px;
 	padding: 5px 10px;
@@ -527,6 +569,11 @@ hr.solid {
 	border-color: #b5c7d350;
 	border-width: 3px;
 	cursor: pointer;
+}
+
+#add-task-button:hover {
+	opacity: 70%;
+	transition: all 0.1s ease-in 0s;
 }
 
 #new-task-button {
@@ -572,6 +619,96 @@ hr.solid {
 #overlay.active{
 	opacity: 1;
 	pointer-events: all;
+}
+
+/* Dictionary CSS */
+
+.input_wrap {
+  padding: 12px 20px;
+	padding-bottom: 80px;
+	position: relative;
+}
+
+.data {
+	padding: 15px 20px;
+	background-color: #DDDDDD;
+	border: #363838 3px;
+	width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+	border: none;
+  border-radius: 4px;
+	resize: none;
+	font-family: 'Lora', 'serif';
+	font-size: 16px;
+	margin-top: 15px;
+	margin-bottom: 25px;
+	color: #363838;
+}
+
+.container {
+	margin-top: 25px;
+}
+
+#input {
+	width: 100%;
+  height: 80px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+	border: none;
+  border-radius: 4px;
+	background-color: #DDDDDD;
+	resize: none;
+	font-family: 'Lora', 'serif';
+	font-size: 20px;
+	color: #363838;
+}
+
+#search {
+	font-size: 20px;
+	padding: 5px 10px;
+	color: #363838;
+	font-weight: 500;
+	background-color: #B5C7D3;
+	font-family: 'Lora', serif;
+	text-align: center;
+	border-radius: 0.3em;
+	border-color: #b5c7d350;
+	border-width: 3px;
+	cursor: pointer;
+	z-index: 2;
+	margin-top: 10px;
+}
+
+#search:hover {
+	opacity: 70%;
+	transition: all 0.1s ease-in 0s;
+}
+
+#clear:hover {
+	opacity: 70%;
+	transition: all 0.1s ease-in 0s;
+}
+
+#clear {
+	font-size: 20px;
+	padding: 5px 10px;
+	color: #363838;
+	font-weight: 500;
+	background-color: #B5C7D3;
+	font-family: 'Lora', serif;
+	text-align: center;
+	border-radius: 0.3em;
+	border-color: #b5c7d350;
+	border-width: 3px;
+	cursor: pointer;
+	z-index: 2;
+	margin-top: 10px;
+}
+
+/* Listen Page */
+.music-player {
+	margin-top: 2em;
 }
 
 @media screen and (max-width: 860px) {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>StudBud - Medical Science Students Study App</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/student-512.png">
   </head>
   <body class = "app-container">
       <div class="grid-container">
@@ -50,17 +51,16 @@
 
                   <!-- Tasks -->
                   <div class="tasks">
-                    <ul id = tasklist>
                     <div class="task" id = "tasks">
-                      <input type = "checkbox" id = "task-1">
-                      <label for = "task-1"><span class = "custom-checkbox"></span>Task 1</label>
+                      <ul id = tasklist>
+                          
+                      </ul>
                     </div>
-                    </ul>
                   </div>
+
 
                   <div class="task-buttons">
                     <button data-modal-target = "#modal" id = "new-task-button" >New Task</button>
-                    <button id = "btn_delete">Clear completed tasks</button>
                   </div>
                 </div>
               </div>
@@ -108,11 +108,28 @@
         <div id = "overlay"></div>
       </section>
 
-      <section id = "Dictionary" class = "page-container">
-        <h1>
-          This is the Dictionary page.
-        </h1>
-      </section>
+    <section id = "Dictionary" class = "page-container">
+        <h2>
+          Search
+        </h2>
+        <div class="input container">
+          <div class="form__wrap">
+              <div class="input__wrap">
+                  <input type="text" placeholder="Type a word" id="input">
+                  <button id="search">Search</button>
+                  <button onclick = "document.getElementById('input').value = ''" id="clear">Clear</button>
+              </div>
+          </div>
+        </div>
+      <div class="data container">
+          <span class="loading">Search a medical science word and the definition will appear here!</span>
+          <p class="def"></p>
+      </div>
+
+      <div class="audio"></div>
+      <div class="not__found"></div>
+      
+    </section>
 
     <section id = "Timer" class = "page-container">
       <div class="aside">
@@ -126,7 +143,7 @@
         </div>
         </nav>
         <div id="Pomodoro">
-          <div id="container">
+          <div id="p-container">
             <div id="timer">
               <div id="time">
                 <span id="minutes">25</span>
@@ -151,9 +168,12 @@
     </section>
 
       <section id = "Listen" class = "page-container">
-        <h1>
-          This is the Listen page.
-        </h1>
+        <h2>
+          Listen to a song while you are studying!
+        </h2>
+        <div class = "music-player">
+          <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWSSrwtip3vZP" width="1000" height="450" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
       </section>
 
     <script src="./script.js">

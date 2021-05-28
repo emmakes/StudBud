@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudBud - Medical Science Students Study App</title>
+    <link href="1709979ce1a746dbac218773e80dac19" rel="stylesheet" type="text/css">
+  </head>
+  <body class="app-container">
+      <div class="grid-container">
+        <div class="header"></div>
+        <div class="nav">
+          <input id="nav-toggle" type="checkbox">
+          <div class="logo">STUD<strong>BUD</strong></div>
+          <ul class="nav_links">
+            <li><a href="#Tasks" class="active">Tasks</a></li>
+            <li><a href="#Dictionary">Dictionary</a></li>
+            <li><a href="#Timer">Timer</a></li>
+            <li><a href="#Stopwatch">Stopwatch</a></li>
+            <li><a href="#Listen">Listen</a></li>
+          </ul>
+          <label for="nav-toggle" class="icon-burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </label>
+        </div>
+      </div>
+
+
+      <!-- Tasks Page with the two columns -->
+      <section id="Tasks" class="page-container">
+        <div class="task-page-container">
+          <div id="quadrant-container" class="column">
+            <h2>Quadrants</h2>
+              <div id="first" class="divSquare">1</div>
+              <div id="second" class="divSquare">2</div>
+              <div style="909eb2459ed0ba80917146ed955e6b82"></div>
+              <div id="third" class="divSquare">3</div>
+              <div id="fourth" class="divSquare">4</div>
+          </div>
+          <div id="task-list-container" class="column">
+            <h2>Tasks</h2>
+            <div id="task-list" class="column border-right">
+              <div class="task-list">
+
+                <div class="task-body">
+                  <p id="emptyList">You have not added any tasks yet</p>
+                  <br>
+
+                  <!-- Tasks -->
+                  <div class="tasks">
+                    <ul id="tasklist">
+                    <div class="task" id="tasks">
+                      <input type="checkbox" id="task-1">
+                      <label for="task-1"><span class="custom-checkbox"></span>Task 1</label>
+                    </div>
+                    </ul>
+                  </div>
+
+                  <div class="task-buttons">
+                    <button data-modal-target="#modal" id="new-task-button">New Task</button>
+                    <button id="btn_delete">Clear completed tasks</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <!-- Popup Window -->
+        <div class="modal" id="modal">
+          <div class="modal-header">
+            <div class="title">Add a New Task</div>
+            <button data-close-button="" class="close-button">&times;</button>
+          </div>
+          <div class="modal-tasks">
+            <form id="taskform">
+              <label for="task">Task Description: </label>
+              <textarea id="taskInput" name="description" rows="3" placeholder="Enter description of task here!"></textarea>
+
+              <label for="dueDate">Due Date: </label> 
+              <input type="date" name="duedate" id="dueDateInput">
+              
+              <br>
+
+              <label for="completionTime">Estimated time to complete: (mins) </label>
+              <input type="number" name="completion-time" id="completionTimeInput">
+              
+              <br>
+
+              <label for="coveyQuadrant">Assign a quadrant for the task: </label>
+              <select name="quadrants" id="quadrantInput">
+                <option value="">Select One</option>
+                <option value="1"> 1: Important, urgent</option>
+                <option value="2"> 2: Important, not urgent</option>
+                <option value="3"> 3: Not important, urgent</option>
+                <option value="4"> 4: Not important, not urgent</option>
+              </select>
+
+              <br>
+
+              <input type="button" value=" Add Task " id="add-task-button">
+            </form>
+          </div>
+        </div>
+        <div id="overlay"></div>
+      </section>
+
+    <section id="Dictionary" class="page-container">
+        <h2>
+          Search
+        </h2>
+
+        <div class="input container">
+          <div class="form__wrap">
+              <div class="input__wrap">
+                  <input type="text" placeholder="Type a word" id="input">
+                  <button id="search">Search</button>
+              </div>
+          </div>
+        </div>
+      <div class="data container">
+          <span class="loading">Search a medical science word and the definition will appear here!</span>
+          <p class="def"></p>
+          <br>
+          <div class="audio"></div>
+          <div class="not__found"></div>
+      </div>
+      
+    </section>
+
+    <section id="Timer" class="page-container">
+      <div class="aside">
+        <hr class="solid">
+        <nav class="sub_nav">
+          <ul class="sub_nav_links">
+            <li id="study" class="sub_nav_item"><a href="#Pomodoro" class="active">Study</a></li>
+            <li id="shortBreak" class="sub_nav_item"><a href="#Short_Break">Short Break</a></li>
+            <li id="longBreak" class="sub_nav_item"><a href="#Long_Break">Long Break</a></li>
+          </ul>
+        </nav></div>
+        
+        <div id="Pomodoro">
+          <div id="container">
+            <div id="timer">
+              <div id="time">
+                <span id="minutes">25</span>
+                <span id="colon">:</span>
+                <span id="seconds">00</span>
+              </div>
+              <div id="filler"></div>
+            </div>
+        </div>
+          <button type="button" id="stop" class="pomodoro_buttons">Stop</button>
+    </div></section>
+
+    <section id="Stopwatch" class="page-container">
+      <div id="Stopwatch_container">
+          <div id="stopwatchDisplay">
+            00 : 00 : 00 : 000
+        </div>
+          <button class="stopwatch_buttons" id="startTimer">Start</button>
+          <button class="stopwatch_buttons" id="stopTimer">Stop</button>
+          <button class="stopwatch_buttons" id="resetTimer">Reset</button>
+      </div>
+    </section>
+
+      <section id="Listen" class="page-container">
+        <h1>
+          This is the Listen page.
+        </h1>
+      </section>
+
+    <script src="a94a5cc328cb89ee3b9929e483436db6" data-parcel-key="8e123e3e1b86032df8aacb9ba97df1ea">
+    </script>
+    <div class="footer">
+
+    </div>
+  
+  </body>
+</html>

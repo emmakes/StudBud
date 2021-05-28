@@ -5,6 +5,7 @@ import './components/tasklist';
 import './components/pomodoro';
 import './components/stopwatch';
 import './components/popupwindow';
+import './components/dictionary';
 
 const links = document.querySelectorAll('.nav_links > li > a');
 const pages = document.querySelectorAll('.page-container');

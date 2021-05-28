@@ -1,0 +1,105 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="(unofficial) Google Dictionary API">
+        <meta name="author" content="Reboot13">
+	<title>Dictionary API - Reboot13</title>
+        <link rel="icon" href="c52aaddb598c270b0e47d5db16e7c2b7" type="image/icon type">
+<link href="4850c3a920e610cbcbe8bcb6db9bfb05" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<style data-parcel-key="458198ccb64c842a70e6238782975916">
+body {
+	background-color: #1f272f;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+.main {
+display: block;
+margin-top: 50px;
+padding: 15px;
+height: 500px;
+width: 90%;
+background-color: #ffffff17;
+color: white;
+font-family: monospace;
+justify-content: left;
+align-content: left;
+
+
+}
+.btn-outline-secondary.btn-primary {
+	color: white;
+}
+.blog-footer {
+  padding: 2rem 0;
+  color: #999;
+  text-align: center;
+  background-color: #333a42;
+  
+}
+.blog-footer:last-child {
+  margin-bottom: 0;
+}
+audio {
+width: inherit;
+}
+a {
+	text-decoration: none;
+	color: white;
+}
+a:visited {
+	text-decoration: none;
+	color: white;
+}
+a:hover {
+	text-decoration: none;
+	font-weight: bold;
+}
+  </style>
+</head>
+<body bgcolor="#1f272f">
+	<center>
+	<div class="main">
+		<h3> Google Dictionary API</h3>
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" id="input">
+  <input type="button" name="Search" value="Search" onclick="Search()" class="btn btn-outline-secondary btn-primary">
+  <input type="button" name="Reset" value="Reset" class="btn btn-outline-secondary" onclick="history.go(0)">
+</div>
+
+<h1 class="badge rounded-pill bg-primary" id="word" align="left">Loading....</h1>
+<h4 style="6e7a0b840784a0697250e95635a416a8" align="left">Definition:</h4>
+<h6 align="left" id="definition1"></h6>
+<h6 align="left" id="definition2"></h6>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+<h4 style="6b580dc2129dcc6486d574e0757840b9" align="left">Example:</h4>
+<h6 align="left" id="example1"></h6>
+<h6 align="left" id="example2"></h6>
+&nbsp;<br>
+&nbsp;<br>
+
+
+
+<audio controls="" id="audio">
+  <source type="audio/ogg">
+</audio>
+</div>
+</center>
+
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+
+
+<footer class="blog-footer" id="blog-footer">
+  <p>Developed and Desigined by <span style="254bdf39666d2e58bd70cc1e123500c4">Reboot13</span></p>
+  <p>
+Copyright ©<script data-parcel-key="1cbb9fa9fcdf26910ccdec7c130bd5e6">document.write(new Date().getFullYear());</script> Reboot13</p>
+<p><a href="d82ec4ef66283ef18ae69017d985db0b">View Source on Github</a></p>
+</footer>
+</body>
+</html>
