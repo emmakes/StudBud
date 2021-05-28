@@ -553,6 +553,10 @@ const form = document.getElementById("taskform");
 const button = document.getElementById("add-task-button")
 var taskInput = document.getElementById("taskInput");
 var tasklist = document.getElementById("tasklist");
+var firstQuadrantList = document.getElementById ("firstQuadrantList")
+var secondQuadrantList = document.getElementById ("secondQuadrantList")
+var thirdQuadrantList = document.getElementById ("thirdQuadrantList")
+var fourthQuadrantList = document.getElementById ("fourthQuadrantList")
 var dueDateInput = document.getElementById("dueDateInput");
 var completionTimeInput = document.getElementById("completionTimeInput");
 var quadrantInput = document.getElementById("quadrantInput");
@@ -594,6 +598,7 @@ function renderTask(task){
   var checkBox = document.createElement("input");
   var label = document.createElement("label");
   checkBox.type = "checkbox";
+  checkBox.classList.add('custom-checkbox');
 
   item.appendChild(checkBox);
   item.appendChild(label);
@@ -618,7 +623,108 @@ function renderTask(task){
     removeItemFromArray(taskListArray, index)
     updateEmpty();
     item.remove();
+    firstQitem.remove();
+    secondQitem.remove();
   })
+
+  console.log(task.coveyQuadrant);
+
+  switch(task.coveyQuadrant) {
+    case '1':
+      console.log("important and urgent")
+      let firstQitem = document.createElement("li");
+      var checkBox = document.createElement("input");
+      var label = document.createElement("label");
+      checkBox.type = "checkbox";
+      checkBox.classList.add('custom-checkbox');
+      firstQitem.appendChild(checkBox);
+      firstQitem.appendChild(label);
+      firstQitem.setAttribute('data-id', task.id);
+      label.innerText = task.taskDescription;
+      firstQuadrantList.appendChild(firstQitem);
+
+      delButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        let id = event.target.parentElement.getAttribute('data-id');
+        let index = taskListArray.findIndex(task => task.id === Number(id));
+        removeItemFromArray(taskListArray, index)
+        updateEmpty();
+        item.remove();
+        firstQitem.remove();
+        secondQitem.remove();
+      })
+      break;
+    case '2':
+      console.log("important, not urgent")
+      let secondQitem = document.createElement("li");
+      var checkBox = document.createElement("input");
+      var label = document.createElement("label");
+      checkBox.type = "checkbox";
+      checkBox.classList.add('custom-checkbox');
+      secondQitem.appendChild(checkBox);
+      secondQitem.appendChild(label);
+      secondQitem.setAttribute('data-id', task.id);
+      label.innerText = task.taskDescription;
+      secondQuadrantList.appendChild(secondQitem);
+
+      delButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        let id = event.target.parentElement.getAttribute('data-id');
+        let index = taskListArray.findIndex(task => task.id === Number(id));
+        removeItemFromArray(taskListArray, index)
+        updateEmpty();
+        item.remove();
+        secondQitem.remove();
+      })
+      break;
+    case '3':
+      console.log("not important, urgent")
+      let thirdQitem = document.createElement("li");
+      var checkBox = document.createElement("input");
+      var label = document.createElement("label");
+      checkBox.type = "checkbox";
+      checkBox.classList.add('custom-checkbox');
+      thirdQitem.appendChild(checkBox);
+      thirdQitem.appendChild(label);
+      thirdQitem.setAttribute('data-id', task.id);
+      label.innerText = task.taskDescription;
+      thirdQuadrantList.appendChild(thirdQitem);
+
+      delButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        let id = event.target.parentElement.getAttribute('data-id');
+        let index = taskListArray.findIndex(task => task.id === Number(id));
+        removeItemFromArray(taskListArray, index)
+        updateEmpty();
+        item.remove();
+        thirdQitem.remove();
+      })
+      break;
+    case '4':
+      console.log("not important, not urgent")
+      let fourthQitem = document.createElement("li");
+      var checkBox = document.createElement("input");
+      var label = document.createElement("label");
+      checkBox.type = "checkbox";
+      checkBox.classList.add('custom-checkbox');
+      fourthQitem.appendChild(checkBox);
+      fourthQitem.appendChild(label);
+      fourthQitem.setAttribute('data-id', task.id);
+      label.innerText = task.taskDescription;
+      fourthQuadrantList.appendChild(fourthQitem);
+
+      delButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        let id = event.target.parentElement.getAttribute('data-id');
+        let index = taskListArray.findIndex(task => task.id === Number(id));
+        removeItemFromArray(taskListArray, index)
+        updateEmpty();
+        item.remove();
+        fourthQitem.remove();
+      })
+      break;
+    default:
+  }
 
   // Clear the input form
   form.reset();
