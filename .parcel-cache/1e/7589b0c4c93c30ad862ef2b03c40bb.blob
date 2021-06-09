@@ -1,0 +1,24 @@
+
+// Pomodoro Timer Logic
+// Reference: https://codepen.io/rajdgreat007/pen/ZpZWbw/
+// Manipulated this code for the timer to succesfully countdown
+
+//
+
+const startButton = document.querySelector('#pomodoro-start')
+const pauseButton = document.querySelector('#pomodoro-pause')
+const stopButton = document.querySelector('#pomodoro-stop')
+
+startButton.addEventListener('click', () => {
+  toggleClock()
+})
+
+// PAUSE
+pauseButton.addEventListener('click', () => {
+  toggleClock()
+})
+
+// STOP
+stopButton.addEventListener('click', () => {
+  toggleClock(true)
+})

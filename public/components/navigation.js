@@ -14,23 +14,22 @@ class Navigation {
     console.log(this.currentPage);
 
     this.links.forEach((link) => {
-      link.classList.remove('active');
+      link.classList.remove("active");
       if (this.getHash(link) === pageID) {
-        link.classList.add('active');
+        link.classList.add("active");
       }
-    })
+    });
 
     this.pages.forEach((page) => {
-      page.style.display = 'none';
-    })
+      page.style.display = "none";
+    });
 
-    document.getElementById(pageID).style.display = 'block';
-
+    document.getElementById(pageID).style.display = "block";
   }
 
   getHash(link) {
-    return link.href.split('#')[1];
+    return link.href.split("#")[1];
   }
 }
 
-export default Navigation; 
+export default Navigation;

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudBud - Medical Science Students Study App</title>
+    <link href="1709979ce1a746dbac218773e80dac19" rel="stylesheet" type="text/css">
+    <link rel="icon" href="93b0376c008ad7b475af6144f7eafc4d">
+  </head>
+  <body class="app-container">
+      <div class="grid-container">
+        <div class="header"></div>
+        <div class="nav">
+          <input id="nav-toggle" type="checkbox">
+          <div class="logo">STUD<strong>BUD</strong></div>
+          <ul class="nav_links">
+            <li><a href="#Tasks" class="active">Tasks</a></li>
+            <li><a href="#Dictionary">Dictionary</a></li>
+            <li><a href="#Timer">Timer</a></li>
+            <li><a href="#Stopwatch">Stopwatch</a></li>
+            <li><a href="#Listen">Listen</a></li>
+          </ul>
+          <label for="nav-toggle" class="icon-burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </label>
+        </div>
+      </div>
+
+
+      <!-- Tasks Page with the two columns -->
+      <section id="Tasks" class="page-container">
+        <div class="task-page-container">
+          <div id="quadrant-container" class="column">
+            <h2>Quadrants</h2>
+              <div id="first" class="divSquare"><p class="quadrant-description">1 - Important, urgent</p>
+                <ul id="firstQuadrantList" class="quadrant-labels">
+
+                </ul>
+              </div>
+              <div id="second" class="divSquare"><p class="quadrant-description">2 - Important, not urgent</p>
+                <ul id="secondQuadrantList" class="quadrant-labels">
+
+                </ul>
+              </div>
+              <div style="6c0f1b4c2b3b6fbfc79bd16d83da2c66"></div>
+              <div id="third" class="divSquare"><p class="quadrant-description">3 - Not important, urgent</p>
+                <ul id="thirdQuadrantList" class="quadrant-labels">
+
+                </ul>
+              </div>
+              <div id="fourth" class="divSquare"><p class="quadrant-description">4 - Not important, not urgent</p>
+                <ul id="fourthQuadrantList" class="quadrant-labels">
+
+                </ul>
+              </div>
+          </div>
+          <div id="task-list-container" class="column">
+            <h2>Tasks</h2>
+            <div id="task-list" class="column border-right">
+              <div class="task-list">
+
+                <div class="task-body">
+                  <p id="emptyList">You have not added any tasks yet</p>
+
+                  <!-- Tasks -->
+                  <div class="tasks">
+                    <div class="task" id="tasks">
+                      <ul id="tasklist">
+                          
+                      </ul>
+                    </div>
+                  </div>
+
+
+                  <div class="task-buttons">
+                    <button data-modal-target="#modal" id="new-task-button">New Task</button>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <!-- Popup Window -->
+        <div class="modal" id="modal">
+          <div class="modal-header">
+            <div class="title">Add a New Task</div>
+            <button data-close-button="" class="close-button">&times;</button>
+          </div>
+          <div class="modal-tasks">
+            <form id="taskform">
+              <label for="task">Task Description: </label>
+              <textarea id="taskInput" name="description" rows="3" placeholder="Enter description of task here!"></textarea>
+
+              <label for="dueDate">Due Date: </label> 
+              <input type="date" name="duedate" id="dueDateInput">
+              
+              <br>
+
+              <label for="completionTime">Estimated time to complete: (mins) </label>
+              <input type="number" name="completion-time" id="completionTimeInput">
+              
+              <br>
+
+              <label for="coveyQuadrant">Assign a quadrant for the task: </label>
+              <select name="quadrants" id="quadrantInput">
+                <option value="">Select One</option>
+                <option value="1"> 1: Important, urgent</option>
+                <option value="2"> 2: Important, not urgent</option>
+                <option value="3"> 3: Not important, urgent</option>
+                <option value="4"> 4: Not important, not urgent</option>
+              </select>
+
+              <br>
+
+              <input type="button" value=" Add Task " id="add-task-button">
+            </form>
+          </div>
+        </div>
+        <div id="overlay"></div>
+      </section>
+
+    <section id="Dictionary" class="page-container">
+        <h2>
+          Search
+        </h2>
+        <div class="input container">
+          <div class="form__wrap">
+              <div class="input__wrap">
+                  <input type="text" placeholder="Type a word" id="input">
+                  <button id="search">Search</button>
+                  <button onclick="document.getElementById('input').value = ''" id="clear">Clear</button>
+              </div>
+          </div>
+        </div>
+      <div class="data container">
+          <span class="loading">Search a medical science word and the definition will appear here!</span>
+          <p class="def"></p>
+      </div>
+
+      <div class="audio"></div>
+      <div class="not__found"></div>
+      
+    </section>
+
+    <section id="Timer" class="page-container">
+      <div class="aside">
+        <hr class="solid">
+        <nav class="sub_nav">
+          <ul class="sub_nav_links">
+            <li id="study" class="sub_nav_item"><a href="#Pomodoro" class="active">Study</a></li>
+            <li id="shortBreak" class="sub_nav_item"><a href="#Short_Break">Short Break</a></li>
+            <li id="longBreak" class="sub_nav_item"><a href="#Long_Break">Long Break</a></li>
+          </ul>
+        </nav></div>
+        
+        <div id="Pomodoro">
+          <div id="p-container">
+            <div id="timer">
+              <div id="time">
+                <span id="minutes">25</span>
+                <span id="colon">:</span>
+                <span id="seconds">00</span>
+              </div>
+              <div id="filler"></div>
+            </div>
+        </div>
+          <button type="button" id="stop" class="pomodoro_buttons">Stop</button>
+    </div></section>
+
+    <section id="Stopwatch" class="page-container">
+      <div id="Stopwatch_container">
+          <div id="stopwatchDisplay">
+            00 : 00 : 00 : 000
+        </div>
+          <button class="stopwatch_buttons" id="startTimer">Start</button>
+          <button class="stopwatch_buttons" id="stopTimer">Stop</button>
+          <button class="stopwatch_buttons" id="resetTimer">Reset</button>
+      </div>
+    </section>
+
+      <section id="Listen" class="page-container">
+        <h2>
+          Listen to a song while you are studying!
+        </h2>
+        <div class="music-player">
+          <iframe src="036f1dfc4e014f9795a90a5a878030a1" width="1000" height="450" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+      </section>
+
+    <script src="a94a5cc328cb89ee3b9929e483436db6" data-parcel-key="8cd809c0e5976fa334e10558959c3a39">
+    </script>
+    <div class="footer">
+
+    </div>
+  
+  </body>
+</html>

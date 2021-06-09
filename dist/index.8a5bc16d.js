@@ -488,18 +488,18 @@ class Navigation {
     this.currentPage = pageID;
     console.log(this.currentPage);
     this.links.forEach(link => {
-      link.classList.remove('active');
+      link.classList.remove("active");
       if (this.getHash(link) === pageID) {
-        link.classList.add('active');
+        link.classList.add("active");
       }
     });
     this.pages.forEach(page => {
-      page.style.display = 'none';
+      page.style.display = "none";
     });
-    document.getElementById(pageID).style.display = 'block';
+    document.getElementById(pageID).style.display = "block";
   }
   getHash(link) {
-    return link.href.split('#')[1];
+    return link.href.split("#")[1];
   }
 }
 exports.default = Navigation;
@@ -623,8 +623,7 @@ function renderTask(task){
     removeItemFromArray(taskListArray, index)
     updateEmpty();
     item.remove();
-    firstQitem.remove();
-    secondQitem.remove();
+    item.classList.add('todo-list-item-fall');
   })
 
   console.log(task.coveyQuadrant);
@@ -633,11 +632,7 @@ function renderTask(task){
     case '1':
       console.log("important and urgent")
       let firstQitem = document.createElement("li");
-      var checkBox = document.createElement("input");
       var label = document.createElement("label");
-      checkBox.type = "checkbox";
-      checkBox.classList.add('custom-checkbox');
-      firstQitem.appendChild(checkBox);
       firstQitem.appendChild(label);
       firstQitem.setAttribute('data-id', task.id);
       label.innerText = task.taskDescription;
@@ -651,17 +646,12 @@ function renderTask(task){
         updateEmpty();
         item.remove();
         firstQitem.remove();
-        secondQitem.remove();
       })
       break;
     case '2':
       console.log("important, not urgent")
       let secondQitem = document.createElement("li");
-      var checkBox = document.createElement("input");
       var label = document.createElement("label");
-      checkBox.type = "checkbox";
-      checkBox.classList.add('custom-checkbox');
-      secondQitem.appendChild(checkBox);
       secondQitem.appendChild(label);
       secondQitem.setAttribute('data-id', task.id);
       label.innerText = task.taskDescription;
@@ -680,11 +670,7 @@ function renderTask(task){
     case '3':
       console.log("not important, urgent")
       let thirdQitem = document.createElement("li");
-      var checkBox = document.createElement("input");
       var label = document.createElement("label");
-      checkBox.type = "checkbox";
-      checkBox.classList.add('custom-checkbox');
-      thirdQitem.appendChild(checkBox);
       thirdQitem.appendChild(label);
       thirdQitem.setAttribute('data-id', task.id);
       label.innerText = task.taskDescription;
@@ -703,11 +689,7 @@ function renderTask(task){
     case '4':
       console.log("not important, not urgent")
       let fourthQitem = document.createElement("li");
-      var checkBox = document.createElement("input");
       var label = document.createElement("label");
-      checkBox.type = "checkbox";
-      checkBox.classList.add('custom-checkbox');
-      fourthQitem.appendChild(checkBox);
       fourthQitem.appendChild(label);
       fourthQitem.setAttribute('data-id', task.id);
       label.innerText = task.taskDescription;
@@ -744,6 +726,7 @@ function updateEmpty() {
     document.getElementById("emptyList").style.display = 'block';
   }
 }
+
 },{"jquery":"6Oaih"}],"6Oaih":[function(require,module,exports) {
 var define;
 /*!
@@ -8503,83 +8486,121 @@ var define;
 });
 
 },{}],"2KGxt":[function(require,module,exports) {
+// Reference: https://www.freecodecamp.org/news/how-i-built-my-pomodoro-clock-app-and-the-lessons-i-learned-along-the-way-51288983f5ee/
+// I used this code to successfully 
 
-// Pomodoro Timer Logic
-// Reference: https://codepen.io/rajdgreat007/pen/ZpZWbw/
-// Manipulated this code for the timer to succesfully countdown
+let countdown = 0;
+let seconds = 0;
+let remaining = 0;
+let isBreak = true;
+let isPaused = true;
+const status = document.querySelector("#status");
+const timerDisplay = document.querySelector(".timerDisplay");
+const startBtn = document.querySelector("#start");
+const resetBtn = document.querySelector("#reset");
+const workMin = document.querySelector("#work-min");
+const breakMin = document.querySelector("#break-min");
+const alarm = document.createElement('audio');
+alarm.setAttribute("src", "https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3");
 
-var pomodoro = {
-  minutes : 0,
-  seconds : 0,
-  init : function(){
-    var time = this;
-    this.minutesDom = document.querySelector('#minutes');
-    this.secondsDom = document.querySelector('#seconds');
-    this.interval = setInterval(function(){
-      time.intervalCallback.apply(time);
-    }, 1000);
-    document.querySelector('#study').onclick = function(){
-      time.startWork.apply(time);
-    };
-    document.querySelector('#shortBreak').onclick = function(){
-      time.startShortBreak.apply(time);
-    };
-    document.querySelector('#longBreak').onclick = function(){
-      time.startLongBreak.apply(time);
-    };
-    document.querySelector('#stop').onclick = function(){
-      time.stopTimer.apply(time);
-    };
-  },
-  resetVariables : function(mins, secs, started){
-    this.minutes = mins;
-    this.seconds = secs;
-    this.started = started;
-  },
-  startWork: function() {
-    this.resetVariables(25, 0, true);
-  },
-  startShortBreak : function(){
-    this.resetVariables(5, 0, true);
-  },
-  startLongBreak : function(){
-    this.resetVariables(15, 0, true);
-  },
-  stopTimer : function(){
-    this.resetVariables(25, 0, false);
-    this.updateDom();
-  },
-  toDoubleDigit : function(num){
-    if(num < 10) {
-      return "0" + parseInt(num, 10);
-    }
-    return num;
-  },
-  updateDom : function(){
-    this.minutesDom.innerHTML = this.toDoubleDigit(this.minutes);
-    this.secondsDom.innerHTML = this.toDoubleDigit(this.seconds);
-  },
-  intervalCallback : function(){
-    if(!this.started) return false;
-    if(this.seconds == 0) {
-      if(this.minutes == 0) {
-        this.timerComplete();
-        return;
-      }
-      this.seconds = 59;
-      this.minutes--;
-    } else {
-      this.seconds--;
-    }
-    this.updateDom();
-  },
-  timerComplete : function(){
-    this.started = false;
+/* EVENT LISTENERS FOR START AND RESET BUTTONS */
+startBtn.addEventListener('click', function () {
+  clearInterval(countdown);
+  if (isPaused) {
+    startCountdown();
+    startBtn.textContent = "Pause";
+    isPaused = false;
+  } else {
+    remaining = seconds;
+    startBtn.textContent = "Continue";
+    isPaused = true;
   }
-};
-window.onload = function(){
-pomodoro.init();
-};
+})
+
+resetBtn.addEventListener('click', function() {
+  clearInterval(countdown);
+  seconds = workMin.textContent * 60;
+  countdown = 0;
+  remaining = 0;
+  isPaused = true;
+  isBreak = true;
+  status.textContent = "Keep Working";
+  startBtn.textContent = "Start";
+  displayTimeLeft(seconds);
+})
+
+/* MAIN FUNCTIONS - TIMER, START COUNTDOWN, & UPDATE DISPLAY */
+function timer() {
+  seconds --;
+  if (seconds < 0) {
+    clearInterval(countdown);
+    alarm.currentTime = 0;
+    alarm.play();
+
+    if (isBreak) {
+      seconds = breakMin.textContent * 60;
+      status.textContent = "Take a Break!";
+      isBreak = false;
+    } else {
+      seconds = workMin.textContent * 60;
+      status.textContent = "Keep Working";
+      isBreak = true;
+    }
+    countdown = setInterval(timer, 1000);
+    return;
+  }
+  displayTimeLeft(seconds); // Keep updating display
+}
+
+function startCountdown() {
+  if (remaining != 0) {
+    seconds = remaining;
+  } else {
+    seconds = workMin.textContent * 60;
+    status.textContent = "Keep Working";
+  }
+  countdown = setInterval(timer, 1000);
+}
+
+function displayTimeLeft(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainderSeconds = seconds % 60;
+  timerDisplay.textContent = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+}
+
+/* UPDATE WORK AND BREAK TIMES */
+const workPlus = document.querySelector("#work-plus");
+const workMinus = document.querySelector("#work-minus");
+const breakPlus = document.querySelector("#break-plus");
+const breakMinus = document.querySelector("#break-minus");
+
+workPlus.addEventListener('click', () => {
+  let x = parseInt(workMin.textContent);          
+  if (x < 60) {
+    workMin.textContent = x+5;
+  }                       
+})
+
+workMinus.addEventListener('click', () => {
+  let x = parseInt(workMin.textContent);          
+  if (x > 5) {
+    workMin.textContent = x-5;
+  }                       
+})
+
+breakPlus.addEventListener('click', () => {
+  let x = parseInt(breakMin.textContent);          
+  if (x < 60) {
+    breakMin.textContent = x+5;
+  }                       
+})
+
+breakMinus.addEventListener('click', () => {
+  let x = parseInt(breakMin.textContent);          
+  if (x > 5) {
+    breakMin.textContent = x-5;
+  }                       
+}) 
 },{}],"4w2wn":[function(require,module,exports) {
 // Stop Watch Logic
 // Reference: https://codepen.io/Coding-Artist/pen/eYBMgQm
@@ -8666,97 +8687,96 @@ function closeModal(modal) {
   overlay.classList.remove('active')
 }
 },{}],"2aL5o":[function(require,module,exports) {
-// Reference: https://github.com/codersgyan/dictionary-app#readme 
+// Reference: https://github.com/codersgyan/dictionary-app#readme
 
-let input = document.querySelector('#input');
-let searchBtn = document.querySelector('#search');
-let apiKey = '6f5d7b73-da86-49f6-b207-0a31fc9e9480';
-let notFound = document.querySelector('.not__found');
-let defBox = document.querySelector('.def');
-let audioBox = document.querySelector('.audio');
-let loading = document.querySelector('.loading');
+let input = document.querySelector("#input");
+let searchBtn = document.querySelector("#search");
+let apiKey = "6f5d7b73-da86-49f6-b207-0a31fc9e9480";
+let notFound = document.querySelector(".not__found");
+let defBox = document.querySelector(".def");
+let audioBox = document.querySelector(".audio");
+let loading = document.querySelector(".loading");
 
-searchBtn.addEventListener('click', function(e){
-    e.preventDefault();
+searchBtn.addEventListener("click", function (e) {
+  e.preventDefault();
 
-    // clear data 
-    audioBox.innerHTML = '';
-    notFound.innerText = '';
-    defBox.innerText = '';
+  // clear data
+  audioBox.innerHTML = "";
+  notFound.innerText = "";
+  defBox.innerText = "";
 
-    // Get input data
-    let word = input.value;
-    // call API get data
-    if (word === '') {
-        alert('Word is required');
-        return;
-    }
+  // Get input data
+  let word = input.value;
+  // call API get data
+  if (word === "") {
+    alert("Word is required");
+    return;
+  }
 
-    getData(word);
-})
+  getData(word);
+});
 
 // When user presses enter, it searches the word
-input.addEventListener("keyup", function(event) {
-       if (event.keyCode === 13) {
-              event.preventDefault();
-              document.getElementById('search').click();
-       }
-})
+input.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("search").click();
+  }
+});
 
 async function getData(word) {
-    loading.style.display = 'block';
-    // Ajax call 
-    const response = await fetch(`https://www.dictionaryapi.com/api/v3/references/medical/json/${word}?key=${apiKey}`);
-    const data = await response.json();
-    // if empty result 
-    if (!data.length) {
-        loading.style.display = 'none';
-        notFound.innerText = ' No result found';
-        return;
-    }
+  loading.style.display = "block";
+  // Ajax call
+  const response = await fetch(
+    `https://www.dictionaryapi.com/api/v3/references/medical/json/${word}?key=${apiKey}`
+  );
+  const data = await response.json();
+  // if empty result
+  if (!data.length) {
+    loading.style.display = "none";
+    notFound.innerText = " No result found";
+    return;
+  }
 
-    // If result is suggetions
-    if (typeof data[0] === 'string') {
-        loading.style.display = 'none';
-        let heading = document.createElement('h3');
-        heading.innerText = 'Did you mean?'
-        notFound.appendChild(heading);
-        data.forEach(element => {
-            let suggetion = document.createElement('span');
-            suggetion.classList.add('suggested');
-            suggetion.innerText = element;
-            notFound.appendChild(suggetion);
-            
-        })
-        return;
-    }
+  // If result is suggetions
+  if (typeof data[0] === "string") {
+    loading.style.display = "none";
+    let heading = document.createElement("h3");
+    heading.innerText = "Did you mean?";
+    notFound.appendChild(heading);
+    data.forEach((element) => {
+      let suggetion = document.createElement("span");
+      suggetion.classList.add("suggested");
+      suggetion.innerText = element;
+      notFound.appendChild(suggetion);
+    });
+    return;
+  }
 
-    // Result found 
-    loading.style.display = 'none';
-    let defination = data[0].shortdef[0];
-    defBox.innerText = defination;
+  // Result found
+  loading.style.display = "none";
+  let defination = data[0].shortdef[0];
+  defBox.innerText = defination;
 
-    // Sound 
-    const soundName = data[0].hwi.prs[0].sound.audio;
-        if(soundName) {
-            renderSound(soundName);
-        }
+  // Sound
+  const soundName = data[0].hwi.prs[0].sound.audio;
+  if (soundName) {
+    renderSound(soundName);
+  }
 
-    console.log(data);
+  console.log(data);
 }
 
 function renderSound(soundName) {
-       // https://media.merriam-webster.com/soundc11
-       let subfolder = soundName.charAt(0);
-       let soundSrc = `https://media.merriam-webster.com/soundc11/${subfolder}/${soundName}.wav?key=${apiKey}`;
-   
-       let aud = document.createElement('audio');
-       aud.src = soundSrc;
-       aud.controls = true;
-       audioBox.appendChild(aud);
-   
-   }
-   
+  // https://media.merriam-webster.com/soundc11
+  let subfolder = soundName.charAt(0);
+  let soundSrc = `https://media.merriam-webster.com/soundc11/${subfolder}/${soundName}.wav?key=${apiKey}`;
+
+  let aud = document.createElement("audio");
+  aud.src = soundSrc;
+  aud.controls = true;
+  audioBox.appendChild(aud);
+}
 
 },{}]},["27Rzb","4OAbU"], "4OAbU", "parcelRequirec526")
 

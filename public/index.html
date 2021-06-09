@@ -29,62 +29,54 @@
       </div>
 
 
-      <!-- Tasks Page with the two columns -->
+      <!-- Tasks Page with the two columns --> 
+      <!-- Reference for two column setup: https://www.w3schools.com/howto/howto_css_two_columns.asp -->
       <section id = "Tasks" class = "page-container">
         <div class = "task-page-container">
-          <div id = "quadrant-container" class = "column">
-            <h2>Quadrants</h2>
-              <div id="first" class="divSquare">1
-                <ul id = "firstQuadrantList">
-
-                </ul>
-              </div>
-              <div id="second" class="divSquare">2
-                <ul id = "secondQuadrantList">
-
-                </ul>
-              </div>
-              <div style='clear:both'></div>
-              <div id="third" class="divSquare">3
-                <ul id = "thirdQuadrantList">
-
-                </ul>
-              </div>
-              <div id="fourth" class="divSquare">4
-                <ul id = "fourthQuadrantList">
-
-                </ul>
-              </div>
-          </div>
           <div id = "task-list-container" class = "column">
             <h2>Tasks</h2>
             <div id = "task-list" class = "column border-right">
               <div class = "task-list">
-
                 <div class="task-body">
                   <p id = "emptyList">You have not added any tasks yet</p>
-                  <br>
-
-                  <!-- Tasks -->
                   <div class="tasks">
                     <div class="task" id = "tasks">
                       <ul id = tasklist>
-                      <input type="checkbox" id="task-1">
-                      <label for="task-1"> <span class="custom-checkbox"></span> Task 1 </label>
-                          
+                        
                       </ul>
                     </div>
                   </div>
-
-
                   <div class="task-buttons">
-                    <button data-modal-target = "#modal" id = "new-task-button" >New Task</button>
-                  </div>
+                    <button data-modal-target = "#modal" id = "new-task-button" >New Task</button>                  </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
+        <div id = "quadrant-container" class = "column">
+            <h2>Quadrants</h2>
+              <div id="first" class="divSquare"><p class = "quadrant-description">1 - Important, urgent</p>
+                <ul id = "firstQuadrantList" class = "quadrant-labels">
+
+                </ul>
+              </div>
+              <div id="second" class="divSquare"><p class = "quadrant-description">2 - Important, not urgent</p>
+                <ul id = "secondQuadrantList" class = "quadrant-labels">
+
+                </ul>
+              </div>
+              <div style='clear:both'></div>
+              <div id="third" class="divSquare"><p class = "quadrant-description">3 - Not important, urgent</p>
+                <ul id = "thirdQuadrantList" class = "quadrant-labels">
+
+                </ul>
+              </div>
+              <div id="fourth" class="divSquare"><p class = "quadrant-description">4 - Not important, not urgent</p>
+                <ul id = "fourthQuadrantList" class = "quadrant-labels">
+
+                </ul>
+              </div>
+          </div>
+      </div>
         
         
         <!-- Popup Window -->
@@ -126,6 +118,7 @@
         <div id = "overlay"></div>
       </section>
 
+      <!-- Dictionary Page -->
     <section id = "Dictionary" class = "page-container">
         <h2>
           Search
@@ -149,48 +142,66 @@
       
     </section>
 
+    <!-- Pomodoro Timer -->
     <section id = "Timer" class = "page-container">
-      <div class="aside">
-        <hr class="solid">
-        <nav class = "sub_nav">
-          <ul class = "sub_nav_links">
-            <li id="study" class = "sub_nav_item"><a href = "#Pomodoro" class = "active">Study</a></li>
-            <li id="shortBreak" class = "sub_nav_item"><a href = "#Short_Break">Short Break</a></li>
-            <li id="longBreak" class = "sub_nav_item"><a href = "#Long_Break">Long Break</a></li>
-          </ul>
+      <h2>Timer for work and breaks</h2>
+      <br>
+      <audio controls>
+        <source src="https://storage.cloudconvert.com/tasks/a62f09ae-ef1d-4085-8d18-04a7da3b1404/Web%20app%20-%20pomodoro.mp3?AWSAccessKeyId=cloudconvert-production&Expires=1623156696&Signature=RQk%2BXICEq0k73vapKWfG4GpUCdw%3D&response-content-disposition=inline%3B%20filename%3D%22Web%20app%20-%20pomodoro.mp3%22&response-content-type=audio%2Fmpeg" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+      <div class="p-container">      
+        <div id="pomodoro">
+          <div class="timerDisplay">25:00</div>
+          <div id="status"></div>
+          <div class = "button-container">
+          <button id="start" class="btn">Start</button>
+          <button id="reset" class="btn">Reset</button>
+          </div>
         </div>
-        </nav>
-        <div id="Pomodoro">
-          <div id="p-container">
-            <div id="timer">
-              <div id="time">
-                <span id="minutes">25</span>
-                <span id="colon">:</span>
-                <span id="seconds">00</span>
-              </div>
-              <div id="filler"></div>
-            </div>
+      
+        <div class="settings">
+          <div id="work">
+            <p class = "pomodoro-text">Work Duration</p>
+            <button class="btn-settings" id="work-plus">+</button>
+            <div class = "time-change"><span id="work-min">25</span> mins</div>
+            <button class="btn-settings" id="work-minus">-</button>
+          </div>
+      
+      
+          <div id="break">
+            <p class = "pomodoro-text">Break Duration</p>
+            <button class="btn-settings" id="break-plus">+</button>
+            <div class = "time-change"><span id="break-min">5</span> mins</div>
+            <button class="btn-settings" id="break-minus">-</button>
+          </div>
         </div>
-          <button type = "button" id = "stop" class = "pomodoro_buttons">Stop</button>
+      </div>
     </section>
 
+    <!-- Stopwatch Timer -->
     <section id = "Stopwatch" class = "page-container">
+      <h2>Stopwatch</h2>
+      <h3>Time yourself when doing your practice exams so that you don't run out of time in the real exam.</h3>
       <div id = "Stopwatch_container">
           <div id = "stopwatchDisplay">
             00 : 00 : 00 : 000
         </div>
+        <div class = "stopwatch-btn-container">
           <button class = "stopwatch_buttons" id="startTimer">Start</button>
           <button class = "stopwatch_buttons" id="stopTimer">Stop</button>
           <button class = "stopwatch_buttons" id="resetTimer">Reset</button>
+        </div>
       </div>
     </section>
 
+    <!-- Music Page -->
       <section id = "Listen" class = "page-container">
         <h2>
           Listen to a song while you are studying!
         </h2>
         <div class = "music-player">
-          <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWSSrwtip3vZP" width="1000" height="450" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWSSrwtip3vZP" width="100%" height="100%" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
       </section>
 
