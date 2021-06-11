@@ -731,6 +731,10 @@ ul {
 
 /* Dictionary CSS */
 
+.flashcards {
+	padding: 20px;
+}
+
 .input_wrap {
   padding: 12px 20px;
 	padding-bottom: 80px;

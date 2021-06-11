@@ -615,7 +615,7 @@ function renderTask(task){
   delButton.appendChild(delButtonText);
   item.appendChild(delButton);
 
-  // Event Listeners for DOM elements
+  // Event Listeners for Delete button
   delButton.addEventListener("click", function(event) {
     event.preventDefault();
     let id = event.target.parentElement.getAttribute('data-id');
@@ -627,6 +627,12 @@ function renderTask(task){
   })
 
   console.log(task.coveyQuadrant);
+
+  // Making a switch case: When the user clicks either 1, 2, 3 or 4th option of covey quadrant, 
+  // the task is automatically added to that quadrant, so the user can get that task done.
+  // When the user checks it to be done, then deletes the task, the task from the quadrant will
+  // automatically dissapear.
+  // There would be a simpler way of doing this, which is an iteration I need to make in this design in the future.
 
   switch(task.coveyQuadrant) {
     case '1':
@@ -8503,7 +8509,7 @@ const breakMin = document.querySelector("#break-min");
 const alarm = document.createElement('audio');
 alarm.setAttribute("src", "https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3");
 
-/* EVENT LISTENERS FOR START AND RESET BUTTONS */
+// Event Listeners for start and reset buttons
 startBtn.addEventListener('click', function () {
   clearInterval(countdown);
   if (isPaused) {
@@ -8529,7 +8535,7 @@ resetBtn.addEventListener('click', function() {
   displayTimeLeft(seconds);
 })
 
-/* MAIN FUNCTIONS - TIMER, START COUNTDOWN, & UPDATE DISPLAY */
+// functions for the timer, starting the countdown and updating the display
 function timer() {
   seconds --;
   if (seconds < 0) {
@@ -8562,40 +8568,41 @@ function startCountdown() {
   countdown = setInterval(timer, 1000);
 }
 
+// Time remaining
 function displayTimeLeft(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainderSeconds = seconds % 60;
   timerDisplay.textContent = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
 }
 
-/* UPDATE WORK AND BREAK TIMES */
+// Update work and break times, so that user can choose how much time to spend on working and how much break time
 const workPlus = document.querySelector("#work-plus");
 const workMinus = document.querySelector("#work-minus");
 const breakPlus = document.querySelector("#break-plus");
 const breakMinus = document.querySelector("#break-minus");
 
-workPlus.addEventListener('click', () => {
+workPlus.addEventListener('click', function () {
   let x = parseInt(workMin.textContent);          
   if (x < 60) {
     workMin.textContent = x+5;
   }                       
 })
 
-workMinus.addEventListener('click', () => {
+workMinus.addEventListener('click', function () {
   let x = parseInt(workMin.textContent);          
   if (x > 5) {
     workMin.textContent = x-5;
   }                       
 })
 
-breakPlus.addEventListener('click', () => {
+breakPlus.addEventListener('click', function () {
   let x = parseInt(breakMin.textContent);          
   if (x < 60) {
     breakMin.textContent = x+5;
   }                       
 })
 
-breakMinus.addEventListener('click', () => {
+breakMinus.addEventListener('click', function () {
   let x = parseInt(breakMin.textContent);          
   if (x > 5) {
     breakMin.textContent = x-5;
@@ -8604,24 +8611,25 @@ breakMinus.addEventListener('click', () => {
 },{}],"4w2wn":[function(require,module,exports) {
 // Stop Watch Logic
 // Reference: https://codepen.io/Coding-Artist/pen/eYBMgQm
+// This code reference was useful in coding the counter and coding the event listeners that I needed to use
 
 let [milliseconds,seconds,minutes] = [0,0,0];
 let timerRef = document.querySelector('#stopwatchDisplay');
 timerRef.innerHTML = '00 : 00 : 000';
 let int = null;
 
-document.getElementById('startTimer').addEventListener('click', ()=>{
+document.getElementById('startTimer').addEventListener('click', function () {
     if(int!==null){
         clearInterval(int);
     }
     int = setInterval(displayTimer,10);
 });
 
-document.getElementById('stopTimer').addEventListener('click', ()=>{
+document.getElementById('stopTimer').addEventListener('click', function () {
     clearInterval(int);
 });
 
-document.getElementById('resetTimer').addEventListener('click', ()=>{
+document.getElementById('resetTimer').addEventListener('click', function () {
     clearInterval(int);
     [milliseconds,seconds,minutes] = [0,0,0];
     timerRef.innerHTML = '00 : 00 : 000';
@@ -8655,13 +8663,13 @@ const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
 
 openModalButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = document.querySelector(button.dataset.modalTarget)
+  button.addEventListener('click', function () {
+    const modal = document.querySelector(button.dataset.modalTarget) // Selects the modal from html
     openModal(modal)
   })
 })
 
-overlay.addEventListener('click', ()=> {
+overlay.addEventListener('click', function () {
   const modals = document.querySelectorAll('.modal.active')
   modals.forEach(modal => {
     closeModal(modal)
@@ -8669,11 +8677,14 @@ overlay.addEventListener('click', ()=> {
 })
 
 closeModalButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = button.closest('.modal')
+  button.addEventListener('click', function () {
+    const modal = button.closest('.modal') // Closes the modal div which has the class of modal
     closeModal(modal)
   })
 })
+
+// Makes sure active is added or removed depending on if the window is closed or not
+// Also activates overlay when pop-up is open
 
 function openModal(modal) {
   if(modal == null) return
@@ -8688,6 +8699,7 @@ function closeModal(modal) {
 }
 },{}],"2aL5o":[function(require,module,exports) {
 // Reference: https://github.com/codersgyan/dictionary-app#readme
+// Used a medical/health API for searching up medical terms
 
 let input = document.querySelector("#input");
 let searchBtn = document.querySelector("#search");
